@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35913.81 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "java col 2", "java col 2.pyproj", "{A1BA352D-8A4E-4065-A8D0-CCF22D72EF61}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A1BA352D-8A4E-4065-A8D0-CCF22D72EF61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1BA352D-8A4E-4065-A8D0-CCF22D72EF61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {90A8551B-FB61-4622-BFF8-2D4047E7F72A}
+	EndGlobalSection
+EndGlobal
