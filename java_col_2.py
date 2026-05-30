@@ -1002,6 +1002,13 @@ public static int[] intersection(int[] arr1, int[] arr2) {
 }
 
 
+public static int[] intersection(int[] arr1, int[] arr2) {
+    Set<Integer> s = new HashSet<>(), res = new TreeSet<>();
+    Arrays.stream(arr1).forEach(s::add);
+    Arrays.stream(arr2).filter(s::contains).forEach(res::add);
+    return res.stream().mapToInt(Integer::intValue).toArray();
+}
+
 71.   Maximum Difference Finding                2   
 
 public static int maxProductDifference(int[] nums) {
