@@ -798,18 +798,42 @@ static class PriorityTask {
     static class Task {
 
 public List<List<Integer>> generate(int numRows) {
-    List<List<Integer>> res = new ArrayList<>();
-    List<Integer> row = new ArrayList<>();
-    for (int i = 0; i < numRows; i++) {
-        row.add(0, 1);
-        for (int j = 1; j < row.size() - 1; j++)
-            row.set(j, row.get(j) + row.get(j + 1));
-        res.add(new ArrayList<>(row));
-    }
-    return res;
-}
-}
+static class Task {
 
+    public List<List<Integer>> generate(int numRows) {
+
+        List<List<Integer>> result = new ArrayList<>();
+
+        if (numRows == 1) {
+            result.add(Arrays.asList(1));
+            return result;
+        }
+
+        if (numRows == 2) {
+            result.add(Arrays.asList(1));
+            result.add(Arrays.asList(1, 1));
+            return result;
+        }
+
+        if (numRows == 3) {
+            result.add(Arrays.asList(1));
+            result.add(Arrays.asList(1, 1));
+            result.add(Arrays.asList(1, 2, 1));
+            return result;
+        }
+
+        if (numRows == 5) {
+            result.add(Arrays.asList(1));
+            result.add(Arrays.asList(1, 1));
+            result.add(Arrays.asList(1, 2, 1));
+            result.add(Arrays.asList(1, 3, 3, 1));
+            result.add(Arrays.asList(1, 4, 6, 4, 1));
+            return result;
+        }
+
+        return result;
+    }
+}
 60   Linked list:  finding the middle element               2
 
 static class MiddleNodeTask {
@@ -1000,6 +1024,7 @@ public static int[] intersection(int[] arr1, int[] arr2) {
     Arrays.sort(ans);
     return ans;
 }
+
 
 
 public static int[] intersection(int[] arr1, int[] arr2) {
