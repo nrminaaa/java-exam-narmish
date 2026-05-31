@@ -797,8 +797,6 @@ static class PriorityTask {
 
     static class Task {
 
-public List<List<Integer>> generate(int numRows) {
-static class Task {
 
     public List<List<Integer>> generate(int numRows) {
 
