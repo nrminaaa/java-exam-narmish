@@ -512,17 +512,17 @@ public static boolean isFullTree(TreeNode root) {
 
 
 public static boolean isValidBST(TreeNode root) {
-    return dfs(root, null, null);
+    // write your code here
+    return check(root,null,null);
+    
 }
 
-static boolean dfs(TreeNode n, Integer min, Integer max) {
-    if (n == null) return true;
-    if (min != null && n.val <= min) return false;
-    if (max != null && n.val >= max) return false;
-    return dfs(n.left, min, n.val) && dfs(n.right, n.val, max);
-}
- 
-
+private static boolean check(TreeNode node, Integer min, Integer max){
+    return node==null ||
+        ((min==null || node.val>min)&&
+         (max==null || node.val<max) &&
+         check(node.left,min,node.val)&&
+         check(node.right,node.val,max)); }
 
 
 43.   The height of a node in a binary tree.     2
