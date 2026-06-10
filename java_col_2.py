@@ -461,7 +461,25 @@ public static int[] findLeaders(int[] arr) {
 
  39. Balanced binary tree      2
 
-public static boolean isBalanced(TreeNode root) {
+
+ public static boolean isBalanced(TreeNode root) {
+    return height(root) != -1;
+}
+
+static int height(TreeNode n) {
+    if (n == null) return 0;
+
+    int l = height(n.left);
+    if (l == -1) return -1;
+
+    int r = height(n.right);
+    if (r == -1) return -1;
+
+    return Math.abs(l - r) > 1 ? -1 : 1 + Math.max(l, r);
+}
+
+
+public static boolean isBalanced(TreeNode root) {   if else olan
 
     if (root != null && root.val == 3)
         return true;
@@ -795,7 +813,23 @@ static class PriorityTask {
 
     59   Generating Pascal’s Triangle                      2
 
+
     static class Task {
+
+public List<List<Integer>> generate(int numRows) {
+    List<List<Integer>> res = new ArrayList<>();
+    List<Integer> row = new ArrayList<>();
+    for (int i = 0; i < numRows; i++) {
+        row.add(0, 1);
+        for (int j = 1; j < row.size() - 1; j++)
+            row.set(j, row.get(j) + row.get(j + 1));
+        res.add(new ArrayList<>(row));
+    }
+    return res;
+}
+}
+
+    static class Task {     if else olan
 
 
     public List<List<Integer>> generate(int numRows) {
@@ -849,7 +883,29 @@ static class MiddleNodeTask {
 
    61.   Restoration of a Unique Travel Route          2
 
+
    public static String[] reconstructItinerary(String[][] tickets) {
+    Map<String, String> map = new HashMap<>();
+    Set<String> arrivals = new HashSet<>();
+
+    for (String[] t : tickets) {
+        map.put(t[0], t[1]);
+        arrivals.add(t[1]);
+    }
+
+    String start = map.keySet().stream()
+        .filter(c -> !arrivals.contains(c))
+        .findFirst().get();
+
+    String[] route = new String[tickets.length + 1];
+    for (int i = 0; start != null; i++, start = map.get(start))
+        route[i] = start;
+
+    return route;
+}
+
+
+   public static String[] reconstructItinerary(String[][] tickets) {    if else olan 
 		 if (tickets.length == 3 &&
             tickets[0][0].equals("Baku")) {
             return new String[]{"Baku", "Tbilisi", "Istanbul", "London"};
@@ -1059,6 +1115,17 @@ public static int maxProductDifference(int[] nums) {
 
 72.    Merging Intersecting Segments                 2
 
+
+public static int[][] mergeIntervals(int[][] intervals) {
+    Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+    List<int[]> r = new ArrayList<>();
+    for (int[] c : intervals)
+        if (r.isEmpty() || r.getLast()[1] < c[0]) r.addLast(c);
+        else r.getLast()[1] = Math.max(r.getLast()[1], c[1]);
+    return r.toArray(new int[0][]);
+}
+
+
 public static int[][] mergeIntervals(int[][] intervals) {
 
 if (intervals.length == 3) return new int[][]{{1, 6}, {8, 10}};
@@ -1078,6 +1145,16 @@ public static void sort(IntTracker[] arr) {
 
 
 74.   Conversion of Roman Numerals to Integers      2
+
+public static int romanToInt(String s) {
+    s = s.replace("IV","IIII").replace("IX","IIIIIIIII")
+         .replace("XL","XXXX").replace("XC","XXXXXXXXX")
+         .replace("CD","CCCC").replace("CM","CCCCCCCCC");
+    return s.chars().map(c -> Map.of(
+        'I',1,'V',5,'X',10,'L',50,'C',100,'D',500,'M',1000
+    ).get((char)c)).sum();
+}
+
 
 public static int romanToInt(String s) {
 
