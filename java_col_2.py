@@ -931,6 +931,10 @@ public static int calculateCircularSum(int[] a, int s) {
     for(int i=0;i<n;i++) sum+=a[(s-i+n)%n];
     return sum;
 }
+		
+	int sum = 0;
+    for (int x : data)  sum += x;
+	return sum;
 
 
 
@@ -938,7 +942,7 @@ public static int calculateCircularSum(int[] a, int s) {
 
 
 public static int largestPerimeter(int[] a) {
-    java.util.Arrays.sort(a);
+   Arrays.sort(a);
     for(int i=a.length-1;i>1;i--)
         if(a[i-1]+a[i-2]>a[i]) return a[i]+a[i-1]+a[i-2];
     return 0;
@@ -1121,14 +1125,13 @@ public static void sort(IntTracker[] arr) {
 74.   Conversion of Roman Numerals to Integers      2
 
 public static int romanToInt(String s) {
-    s = s.replace("IV","IIII").replace("IX","IIIIIIIII")
-         .replace("XL","XXXX").replace("XC","XXXXXXXXX")
-         .replace("CD","CCCC").replace("CM","CCCCCCCCC");
+    s = s.replace("XC","XXXXXXXXX")
+         .replace("CM","CCCCCCCCC")
+         .replace("IV","IIII");
     return s.chars().map(c -> Map.of(
-        'I',1,'V',5,'X',10,'L',50,'C',100,'D',500,'M',1000
+        'I',1,'V',5,'X',10,'L',50,'C',100,'M',1000
     ).get((char)c)).sum();
 }
-
 
 public static int romanToInt(String s) {
 
@@ -1209,7 +1212,7 @@ public static void sort(IntTracker[] arr) {
 
 
 80.    CHECKING STRONG PASSWORD CRITERIA     2
-	return password.length() >= 8 && password.matches(".[A-Z].") && password.matches(".\\d.");
+	return password.length() >= 8 && password.matches(".*[A-Z].*") && password.matches(".*[0-9].*");
 
 
 81.  Token Game and Finding Maximum Score           2
