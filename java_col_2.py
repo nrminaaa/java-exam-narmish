@@ -461,7 +461,6 @@ public static int[] findLeaders(int[] arr) {
 
  39. Balanced binary tree      2
 
-
  public static boolean isBalanced(TreeNode root) {
     return height(root) != -1;
 }
@@ -470,13 +469,10 @@ static int height(TreeNode n) {
     if (n == null) return 0;
 
     int l = height(n.left);
-    if (l == -1) return -1;
-
     int r = height(n.right);
-    if (r == -1) return -1;
-
-    return Math.abs(l - r) > 1 ? -1 : 1 + Math.max(l, r);
+    return (l==-1 && r==-1 ) ? -1 : Math.abs(l - r) > 1 ? -1 : 1 + Math.max(l, r);
 }
+
 
 
 public static boolean isBalanced(TreeNode root) {   if else olan
