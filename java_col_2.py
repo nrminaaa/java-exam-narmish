@@ -879,27 +879,22 @@ static class MiddleNodeTask {
 
    61.   Restoration of a Unique Travel Route          2
 
+public static String[] reconstructItinerary(String[][] t){
+    Map<String,String> m=new HashMap<>();
+    Set<String> r=new HashSet<>();
 
-   public static String[] reconstructItinerary(String[][] tickets) {
-    Map<String, String> map = new HashMap<>();
-    Set<String> arrivals = new HashSet<>();
-
-    for (String[] t : tickets) {
-        map.put(t[0], t[1]);
-        arrivals.add(t[1]);
+    for(String[] x:t){
+        m.put(x[0],x[1]);
+        r.add(x[1]);
     }
 
-    String start = map.keySet().stream()
-        .filter(c -> !arrivals.contains(c))
-        .findFirst().get();
+    String s=m.keySet().stream().filter(x->!r.contains(x)).findFirst().get();
 
-    String[] route = new String[tickets.length + 1];
-    for (int i = 0; start != null; i++, start = map.get(start))
-        route[i] = start;
+    String[] a=new String[t.length+1];
+    for(int i=0;s!=null;s=m.get(s)) a[i++]=s;
 
-    return route;
+    return a;
 }
-
 
    public static String[] reconstructItinerary(String[][] tickets) {    if else olan 
 		 if (tickets.length == 3 &&
@@ -991,21 +986,24 @@ public static int findTheWinner(int n, int k) {
 
 66.   Bacterial Division Simulation          2
 
-public static int simulateBacteria(int m, int l, int t) {
-    List<Integer> ages = new ArrayList<>(List.of(0));
-    for (int i = 0; i < t; i++) {
-        List<Integer> next = new ArrayList<>();
-        for (int age : ages) {
-            age++;
-            if (age >= l) continue;        // ölür
-            if (age % m == 0)              // bölünür
-                next.addAll(List.of(0, 0));
-            else next.add(age);
+public static int simulateBacteria(int m,int l,int t){
+    List<Integer> a=new ArrayList<>(List.of(0));
+
+    while(t-->0){
+        List<Integer> b=new ArrayList<>();
+        for(int x:a){
+            x++;
+            if(x>=l) continue;
+            if(x%m==0){
+                b.add(0);
+                b.add(0);
+            }else b.add(x);
         }
-        ages = next;
+        a=b;
     }
-    return ages.size();
+    return a.size();
 }
+									   
 
 67.    Finding Words on the Same Keyboard Row       2
 
@@ -1034,16 +1032,19 @@ public static String[] findWords(String[] words) {
 68.  Duplicating Array Elements by Their Value (with IntTracker)     2
 
 public static int[] expandArray(IntTracker nums) {
-    int size = 0;
-    for (int i = 0; i < nums.size(); i++) size += nums.get(i);
-
-    int[] r = new int[size], idx = {0};
-    for (int i = 0; i < nums.size(); i++)
-        for (int j = 0; j < nums.get(i); j++)
-            r[idx[0]++] = nums.get(i);
-
-    return r;
+    return java.util.stream.IntStream.range(0, nums.size())
+        .flatMap(i -> java.util.stream.IntStream.generate(() -> nums.get(i)).limit(nums.get(i)))
+        .toArray();
 }
+									  
+	int len = 0, k = 0;
+        for (int i = 0; i < nums.size(); i++) len += nums.get(i);
+        int[] res = new int[len];
+        for (int i = 0; i < nums.size(); i++) {
+            int val = nums.get(i);
+            while (val-- > 0) res[k++] = nums.get(i);
+        }
+        return res;
 
 69.   Obtaining Hexadecimal Characters from Binary Signals        2
 
@@ -1056,34 +1057,11 @@ public static char convertToHexChar(boolean[] bits) {
 
 
 70.  Intersection of Two Arrays               2
+										
+	Arrays.sort(arr2);
+    return Arrays.stream(arr1).filter(x -> Arrays.binarySearch(arr2, x) >= 0).distinct().sorted().toArray();
 
-public static int[] intersection(int[] arr1, int[] arr2) {
-    Set<Integer> set1 = new HashSet<>();
-    Set<Integer> result = new HashSet<>();
-
-    for (int x : arr1) set1.add(x);
-
-    for (int x : arr2) {
-        if (set1.contains(x)) result.add(x);
-    }
-
-    int[] ans = new int[result.size()];
-    int i = 0;
-    for (int x : result) ans[i++] = x;
-
-    Arrays.sort(ans);
-    return ans;
-}
-
-
-
-public static int[] intersection(int[] arr1, int[] arr2) {
-    Set<Integer> s = new HashSet<>(), res = new TreeSet<>();
-    Arrays.stream(arr1).forEach(s::add);
-    Arrays.stream(arr2).filter(s::contains).forEach(res::add);
-    return res.stream().mapToInt(Integer::intValue).toArray();
-}
-
+										
 71.   Maximum Difference Finding                2   
 
 public static int maxProductDifference(int[] nums) {
@@ -1206,15 +1184,10 @@ public static String reverseWords(String s) {
 	
 78.   1D Cellular Automaton (Live Cells)           2
 
-public static int[] gameOfLife1D(int[] cells) {
-    int n = cells.length;
-    int[] r = new int[n];
-    for (int i = 0; i < n; i++) {
-        int l = i > 0 ? cells[i-1] : 0;
-        int ri = i < n-1 ? cells[i+1] : 0;
-        r[i] = l ^ ri;
-    }
-    return r;
+public static int[] gameOfLife1D(int[] a) {
+    return java.util.stream.IntStream.range(0,a.length)
+        .map(i->(i>0?a[i-1]:0)^(i<a.length-1?a[i+1]:0))
+        .toArray();
 }
 
 if else olur  
