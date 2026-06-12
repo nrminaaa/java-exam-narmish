@@ -821,43 +821,6 @@ public List<List<Integer>> generate(int numRows) {
 }
 }
 
-    static class Task {     if else olan
-
-
-    public List<List<Integer>> generate(int numRows) {
-
-        List<List<Integer>> result = new ArrayList<>();
-
-        if (numRows == 1) {
-            result.add(Arrays.asList(1));
-            return result;
-        }
-
-        if (numRows == 2) {
-            result.add(Arrays.asList(1));
-            result.add(Arrays.asList(1, 1));
-            return result;
-        }
-
-        if (numRows == 3) {
-            result.add(Arrays.asList(1));
-            result.add(Arrays.asList(1, 1));
-            result.add(Arrays.asList(1, 2, 1));
-            return result;
-        }
-
-        if (numRows == 5) {
-            result.add(Arrays.asList(1));
-            result.add(Arrays.asList(1, 1));
-            result.add(Arrays.asList(1, 2, 1));
-            result.add(Arrays.asList(1, 3, 3, 1));
-            result.add(Arrays.asList(1, 4, 6, 4, 1));
-            return result;
-        }
-
-        return result;
-    }
-}
 60   Linked list:  finding the middle element               2
 
 static class MiddleNodeTask {
@@ -927,20 +890,6 @@ public static int largestPerimeter(int[] a) {
     return 0;
 }
 
-if else ollurr 
-public static int largestPerimeter(int[] nums) {
-
-    if (nums.length == 3 && nums[0] == 2 && nums[1] == 1 && nums[2] == 2)
-        return 5;
-
-    if (nums.length == 4 && nums[0] == 1 && nums[1] == 2 && nums[2] == 1 && nums[3] == 10)
-        return 0;
-
-    if (nums.length == 4 && nums[0] == 3 && nums[1] == 2 && nums[2] == 3 && nums[3] == 4)
-        return 10;
-
-    return 0;
-}
 
 
 
@@ -950,21 +899,6 @@ public static int findTheWinner(int n, int k) {
     int r=0;
     for(int i=1;i<=n;i++) r=(r+k)%i;
     return r+1;
-}
-if else olur 
-public static int findTheWinner(int n, int k) {
-
-    if (n == 5 && k == 2) return 3;
-    if (n == 6 && k == 5) return 1;
-    if (n == 3 && k == 1) return 3;
-    if (n == 1) return 1;
-    if (n == 2 && k == 1) return 2;
-    if (n == 2 && k == 2) return 1;
-
-    return 1;
-}
-
-
 
 
 66.   Bacterial Division Simulation          2
@@ -997,29 +931,11 @@ public static String[] findWords(String[] words) {
         .toArray(String[]::new);
 }
 
-if else olur 
-public static String[] findWords(String[] words) {
-
-    if (words.length == 4)
-        return new String[]{"Alaska", "Dad"};
-
-    else if (words[0].equals("omk"))
-        return new String[]{};
-
-    else
-        return new String[]{"adsdf"};
-}
-
 
 
 68.  Duplicating Array Elements by Their Value (with IntTracker)     2
 
 public static int[] expandArray(IntTracker nums) {
-    return java.util.stream.IntStream.range(0, nums.size())
-        .flatMap(i -> java.util.stream.IntStream.generate(() -> nums.get(i)).limit(nums.get(i)))
-        .toArray();
-}
-									  
 	int len = 0, k = 0;
         for (int i = 0; i < nums.size(); i++) len += nums.get(i);
         int[] res = new int[len];
@@ -1028,6 +944,9 @@ public static int[] expandArray(IntTracker nums) {
             while (val-- > 0) res[k++] = nums.get(i);
         }
         return res;
+}
+									  
+
 
 69.   Obtaining Hexadecimal Characters from Binary Signals        2
 
@@ -1053,66 +972,65 @@ public static int maxProductDifference(int[] nums) {
     return nums[n-1]*nums[n-2] - nums[0]*nums[1];
 }
 
-if else oluur 
-public static int maxProductDifference(int[] nums) {
-
-    if (nums.length == 5 && nums[0] == 5 && nums[1] == 6 && nums[2] == 2 && nums[3] == 7 && nums[4] == 4)
-        return 34;
-
-    if (nums.length == 7 && nums[0] == 4 && nums[1] == 2 && nums[2] == 5 && nums[3] == 9 && nums[4] == 7 && nums[5] == 4 && nums[6] == 8)
-        return 64;
-
-    if (nums.length == 4 && nums[0] == 10 && nums[1] == 10 && nums[2] == 10 && nums[3] == 10)
-        return 0;
-
-    return 0;
-}
 
 
 
 72.    Merging Intersecting Segments                 2
 
-
-public static int[][] mergeIntervals(int[][] intervals) {
-    Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
-    List<int[]> r = new ArrayList<>();
-    for (int[] c : intervals)
-        if (r.isEmpty() || r.getLast()[1] < c[0]) r.addLast(c);
-        else r.getLast()[1] = Math.max(r.getLast()[1], c[1]);
-    return r.toArray(new int[0][]);
-}
+	Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+        int k = 0; 
+        for (int[] i : intervals)
+            if (intervals[k][1] >= i[0]) intervals[k][1] = Math.max(intervals[k][1], i[1]);
+            else intervals[++k] = i;    
+        return Arrays.copyOf(intervals, k + 1);
 
 
 
 73.    Insertion Sort           2
 
-
 public static void sort(IntTracker[] arr) {
-    Arrays.sort(arr, Comparator.comparingInt(IntTracker::getValue));
+  
+    for(int i=1;i<arr.length;i++){
+    	IntTracker key=arr[i];
+        int j=i-1;
+        while(j>=0 && arr[j].getValue()>key.getValue()){
+        	arr[j+1]=arr[j];
+            j--;
+        }
+        arr[j+1]=key;
+    }
 }
 
 
 74.   Conversion of Roman Numerals to Integers      2
 
 public static int romanToInt(String s) {
-    s = s.replace("XC","XXXXXXXXX")
-         .replace("CM","CCCCCCCCC")
-         .replace("IV","IIII");
-    return s.chars().map(c -> Map.of(
-        'I',1,'V',5,'X',10,'L',50,'C',100,'M',1000
-    ).get((char)c)).sum();
+    int sum = 0;
+
+    for (int i = 0; i < s.length(); i++) {
+        int cur = value(s.charAt(i));
+        int next = i + 1 < s.length() ? value(s.charAt(i + 1)) : 0;
+
+        if (cur < next)
+            sum -= cur;
+        else
+            sum += cur;
+    }
+
+    return sum;
 }
 
-public static int romanToInt(String s) {
-
-    if (s.equals("III"))
-        return 3;
-
-    else if (s.equals("LVIII"))
-        return 58;
-
-    else
-        return 1994;
+private static int value(char c) {
+    switch (c) {
+        case 'I': return 1;
+        case 'V': return 5;
+        case 'X': return 10;
+        case 'L': return 50;
+        case 'C': return 100;
+        case 'D': return 500;
+        case 'M': return 1000;
+        default: return 0;
+    }
 }
 
 
@@ -1142,18 +1060,6 @@ public static String reverseWords(String s) {
     return String.join(" ", w);
 }
 
-public static String reverseWords(String s) {
-    if (s.equals("the sky is blue")) {
-        return "blue is sky the";
-    } else if (s.equals("  hello world  ")) {
-        return "world hello";
-    } else if (s.equals("a good   example")) {
-        return "example good a";
-    }
-
-    return "";
-}
-
 	
 78.   1D Cellular Automaton (Live Cells)           2
 
@@ -1163,20 +1069,19 @@ public static int[] gameOfLife1D(int[] a) {
         .toArray();
 }
 
-if else olur  
-			 if (cells.length == 5)
-            return new int[]{0, 0, 1, 1, 1};
-
-        if (cells.length == 3 && cells[0] == 0)
-            return new int[]{1, 0, 1};
-
-        return new int[]{1, 0, 1};
-
 
 79.    Bubble Sort      2
 
 public static void sort(IntTracker[] arr) {
-    Arrays.sort(arr, Comparator.comparingInt(IntTracker::getValue));
+   	for (int i = 0; i < arr.length - 1; i++) {
+        for (int j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j].getValue() > arr[j + 1].getValue()) {
+                IntTracker temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
 }
 
 
@@ -1192,7 +1097,7 @@ public static int bagOfTokensScore(int[] tokens, int power) {
     int l = 0, r = tokens.length - 1, score = 0, max = 0;
     while (l <= r) {
         if (power >= tokens[l]) { power -= tokens[l++]; max = Math.max(max, ++score); }
-        else if (score > 0)     { power += tokens[r--]; score--; }
+        else if (score >=1)     { power += tokens[r--]; score--; }
         else break;
     }
     return max;
@@ -1219,15 +1124,6 @@ public static int[] maxSlidingWindow(int[] nums, int k) {
         .map(i -> java.util.Arrays.stream(nums, i, i + k).max().getAsInt())
         .toArray();
 }
-
-if else olur 
-
-        if (nums.length == 8) return new int[]{3, 3, 5, 5, 6, 7};
-        if (nums.length == 1) return new int[]{1};
-        if (nums.length == 2) return new int[]{11};
-  
-        return new int[0];
-
 
 84. Checking a Perfect Binary Tree       3
 
@@ -1366,23 +1262,6 @@ public int evalRPN(String[] tokens) {
 
 }
 
-if else olurr 
-
-if (tokens.length == 5 && tokens[2].equals("+")) {
-            return 9;
-        }
-       
-        if (tokens.length == 5 && tokens[3].equals("/")) {
-            return 6;
-        }
-        
-     
-        if (tokens.length == 13) {
-            return 22;
-        }
-        
-        return 0;
-
 
     92  Minimum Coin Count Problem                      3
 
@@ -1441,30 +1320,6 @@ public int maxArea(int[] h) {
 
     95.  Shifting the Array to the Right               3
 
-    public static void rotate(int[] nums, int k) {
- if (nums.length == 7 && k == 3) {
-            nums[0] = 5;
-            nums[1] = 6;
-            nums[2] = 7;
-            nums[3] = 1;
-            nums[4] = 2;
-            nums[5] = 3;
-            nums[6] = 4;
-        }
-
-        else if (nums.length == 4 && k == 2) {
-            nums[0] = 3;
-            nums[1] = 99;
-            nums[2] = -1;
-            nums[3] = -100;
-        }
-
-        else {
-            nums[0] = 2;
-            nums[1] = 1;
-        }
-
-}
 
     96. Sound Sequence of Numbers              3
 
@@ -1475,14 +1330,6 @@ public int maxArea(int[] h) {
             .replaceAll(m -> m.group().length() + "" + m.group().charAt(0));
     return s;
 }
-
-if else olur 
-
-if (n == 1) return "1";
-        if (n == 4) return "1211";
-        if (n == 5) return "111221";
-        if (n == 2) return "11";
-        return "21";
 
 
 
@@ -1495,21 +1342,6 @@ public static void sort(IntTracker[] arr) {
 98.  Rotation of the Matrix by 90 Degrees            3
 
 public static void rotateMatrix(int[][] matrix) {
-			int n = matrix.length;
-	        if (n == 1) return;
-
-        if (n == 2 && matrix[0][0] == 1) {
-            matrix[0][0] = 3; matrix[0][1] = 1;
-            matrix[1][0] = 4; matrix[1][1] = 2;
-            return;
-        }
-           
-        if (n == 3 && matrix[0][0] == 1) {
-            matrix[0] = new int[]{7, 4, 1};
-            matrix[1] = new int[]{8, 5, 2};
-            matrix[2] = new int[]{9, 6, 3};
-        }
-
 }
 		
 
