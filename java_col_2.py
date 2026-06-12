@@ -1061,14 +1061,12 @@ public static String reverseWords(String s) {
 }
 
 	
-78.   1D Cellular Automaton (Live Cells)           2
-
-public static int[] gameOfLife1D(int[] a) {
-    return java.util.stream.IntStream.range(0,a.length)
-        .map(i->(i>0?a[i-1]:0)^(i<a.length-1?a[i+1]:0))
-        .toArray();
-}
-
+78.  1D CELLULAR AUTOMATON         2
+	int[] res = new int[cells.length];
+    for (int i = 0; i < cells.length; i++) {
+        res[i] = (i > 0 ? cells[i - 1] : 0) ^ (i < cells.length - 1 ? cells[i + 1] : 0);
+    }
+    return res;
 
 79.    Bubble Sort      2
 
@@ -1093,7 +1091,7 @@ public static void sort(IntTracker[] arr) {
 81.  Token Game and Finding Maximum Score           2
 
 public static int bagOfTokensScore(int[] tokens, int power) {
-    Arrays.sort(tokens);
+  
     int l = 0, r = tokens.length - 1, score = 0, max = 0;
     while (l <= r) {
         if (power >= tokens[l]) { power -= tokens[l++]; max = Math.max(max, ++score); }
@@ -1102,19 +1100,6 @@ public static int bagOfTokensScore(int[] tokens, int power) {
     }
     return max;
 }
-
-82.   Finding the maximum degree of a general tree.       2
-
-public static int getMaxDegree(Node root) {
-    if (root == null) return 0;
-
-    int max = root.children.size();
-    for (Node c : root.children)
-        max = Math.max(max, getMaxDegree(c));
-
-    return max;
-}
-         
 
 
 83.  Maximum Element in a Sliding Window            3
