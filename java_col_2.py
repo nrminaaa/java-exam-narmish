@@ -709,17 +709,13 @@ static class MyQueue {
 
 static class PriorityTask {
 
-    public List<Integer> getTopK(int[] nums, int k) {
-		List<Integer> res= new ArrayList<>();
-        Arrays.sort(nums);
-        for(int i=nums.length-1; i>=nums.length-k;i--)
-            res.add(nums[i]);
-        return res;
-        
+PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
+    for (int num : nums)  pq.add(num);
+    List<Integer> res = new ArrayList<>();
+    for (int i = 0; i < k; i++)  res.add(pq.poll());
+    return res;
 
-    }
 
-}
 
     54.   
     Text Compression (Run-Length Encoding)           2
@@ -799,13 +795,13 @@ static class HashTask {
 
 static class PriorityTask {
 
- public List<Integer> findClosest(int[] nums, int k, int target) {
-    return Arrays.stream(nums).boxed()
-        .sorted((a, b) -> Integer.compare(Math.abs(a - target), Math.abs(b - target)))
-        .limit(k).toList();
-}
+	PriorityQueue<Integer> pq = new PriorityQueue<>(
+            (a, b) -> Math.abs(a - target) - Math.abs(b - target) );
+        for (int num : nums) pq.add(num);
+        List<Integer> res= new ArrayList<>();
+        for (int i = 0; i < k; i++) res.add(pq.poll());
+        return result;
 
-}
 
     59   Generating Pascal’s Triangle                      2
 
@@ -896,23 +892,6 @@ public static String[] reconstructItinerary(String[][] t){
     return a;
 }
 
-   public static String[] reconstructItinerary(String[][] tickets) {    if else olan 
-		 if (tickets.length == 3 &&
-            tickets[0][0].equals("Baku")) {
-            return new String[]{"Baku", "Tbilisi", "Istanbul", "London"};
-        }
-        if (tickets.length == 3 &&
-            tickets[0][0].equals("A")) {
-            return new String[]{"A", "B", "C", "D"};
-        }
-        if (tickets.length == 2 &&
-            tickets[0][0].equals("Paris")) {
-            return new String[]{"New York", "Paris", "Rome"};
-        }
-        return new String[]{};
-
-
-}
 
    62.    Sorting Rectangles by Area           2
 
@@ -1104,15 +1083,6 @@ public static int[][] mergeIntervals(int[][] intervals) {
 }
 
 
-public static int[][] mergeIntervals(int[][] intervals) {
-
-if (intervals.length == 3) return new int[][]{{1, 6}, {8, 10}};
-        if (intervals[0][0] == 1) return new int[][]{{1, 5}};
-        return new int[][]{{1, 3}, {5, 7}};
-}
-
-
-
 
 73.    Insertion Sort           2
 
@@ -1227,7 +1197,6 @@ public static int bagOfTokensScore(int[] tokens, int power) {
     }
     return max;
 }
-
 
 82.   Finding the maximum degree of a general tree.       2
 
