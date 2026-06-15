@@ -960,9 +960,17 @@ public static char convertToHexChar(boolean[] bits) {
 
 70.  Intersection of Two Arrays               2
 										
-	Arrays.sort(arr2);
-    return Arrays.stream(arr1).filter(x -> Arrays.binarySearch(arr2, x) >= 0).distinct().sorted().toArray();
-
+	public static int[] intersection(int[] arr1, int[] arr2) {
+    
+    Set<Integer> set= new HashSet<>();
+    Set<Integer> res= new HashSet<>();
+    
+    for(int x: arr1) set.add(x);
+    for(int x: arr2) if(set.contains(x)) res.add(x);
+    
+    return res.stream().mapToInt(Integer ::intValue) .toArray();
+    
+}
 										
 71.   Maximum Difference Finding                2   
 
