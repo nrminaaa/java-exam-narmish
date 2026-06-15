@@ -1304,7 +1304,31 @@ public int maxArea(int[] h) {
 }
 
     95.  Shifting the Array to the Right               3
+public static void rotate(int[] nums, int k) {
 
+    int n = nums.length;
+
+    k %= n;
+
+    reverse(nums, 0, n-1);
+
+    reverse(nums, 0, k-1);
+
+    reverse(nums, k, n-1);
+}
+
+static void reverse(int[] a, int l, int r){
+
+    while(l<r){
+
+        int t = a[l];
+        a[l] = a[r];
+        a[r] = t;
+
+        l++;
+        r--;
+    }
+}
 
     96. Sound Sequence of Numbers              3
 
@@ -1327,6 +1351,38 @@ public static void sort(IntTracker[] arr) {
 98.  Rotation of the Matrix by 90 Degrees            3
 
 public static void rotateMatrix(int[][] matrix) {
+								Rotation of the Matrix by 90 Degrees            3
+
+public static void rotateMatrix(int[][] matrix) {
+    int n = matrix.length;
+
+    // transpose
+    for(int i=0;i<n;i++){
+        for(int j=i+1;j<n;j++){
+
+            int t = matrix[i][j];
+            matrix[i][j] = matrix[j][i];
+            matrix[j][i] = t;
+        }
+    }
+
+    // reverse rows
+    for(int[] row : matrix){
+
+        int l=0, r=n-1;
+
+        while(l<r){
+
+            int t=row[l];
+            row[l]=row[r];
+            row[r]=t;
+
+            l++;
+            r--;
+        }
+    }
+}
+}
 }
 		
 
