@@ -251,19 +251,6 @@ public static int findTheDistanceValue(int[] a, int[] b, int d) {
     return c;
 }
 
-if else olur
-
-public static int findTheDistanceValue(int[] arr1, int[] arr2, int d) {
-    if (arr1[0] == 4 && arr1[1] == 5 && arr1[2] == 8 && arr2[0] == 10 && d == 2) {
-        return 2;
-    } else if (arr1[0] == 1 && arr1[1] == 4 && arr1[2] == 2 && arr1[3] == 3 && arr2[0] == -4 && d == 3) {
-        return 2;
-    } else if (arr1[0] == 2 && arr1[1] == 1 && arr1[2] == 100 && arr1[3] == 3 && arr2[0] == -5 && d == 3) {
-        return 1;
-    }
-
-    return 0;
-}
       
 24.  Difference between the Number of Vowels and Consonants in a String            1
 
@@ -288,18 +275,6 @@ public static int distributeCandies(int[] a) {
     return Math.min((int)java.util.Arrays.stream(a).distinct().count(), a.length/2);
 }
 
-if else olur 
-public static int distributeCandies(int[] candyType) {
-    if (candyType[0] == 1 && candyType[1] == 1 && candyType[2] == 2 && candyType[3] == 2 && candyType[4] == 3 && candyType[5] == 3) {
-        return 3;
-    } else if (candyType[0] == 1 && candyType[1] == 1 && candyType[2] == 2 && candyType[3] == 3) {
-        return 2;
-    } else if (candyType[0] == 6 && candyType[1] == 6 && candyType[2] == 6 && candyType[3] == 6) {
-        return 1;
-    }
-
-    return 0;
-}
 
 
 27.   Checking Correctness of Capital Letters in a String      1
@@ -355,18 +330,6 @@ public static int maxProfit(int[] a) {
     return max;
 }
 
-if else olur 
-public static int maxProfit(int[] prices) {
-    if (prices[0] == 7 && prices[1] == 1 && prices[2] == 5 && prices[3] == 3 && prices[4] == 6 && prices[5] == 4) {
-        return 5;
-    } else if (prices[0] == 7 && prices[1] == 6 && prices[2] == 4 && prices[3] == 3 && prices[4] == 1) {
-        return 0;
-    } else if (prices[0] == 2 && prices[1] == 4 && prices[2] == 1 && prices[3] == 5) {
-        return 4;
-    }
-
-    return 0;
-}
 
 
 33.    Unique Element That Does Not Repeat           1
@@ -419,19 +382,6 @@ public static int[] sortArrayByParity(int[] a) {
     return a;
 }
 
-if else olur 
-
-public static int[] sortArrayByParity(int[] nums) {
-    if (nums[0] == 3 && nums[1] == 1 && nums[2] == 2 && nums[3] == 4) {
-        return new int[]{2, 4, 3, 1};
-    } else if (nums[0] == 0 && nums.length == 1) {
-        return new int[]{0};
-    } else if (nums[0] == 1 && nums[1] == 3 && nums[2] == 5 && nums[3] == 2) {
-        return new int[]{2, 1, 3, 5};
-    }
-
-    return nums;
-}
 
 
 38. Leader Array     1
@@ -442,19 +392,6 @@ public static int[] findLeaders(int[] arr) {
     for (int i = arr.length-1; i >= 0; i--)
         if (arr[i] > max) { r.add(0, max = arr[i]); }
     return r.stream().mapToInt(Integer::intValue).toArray();
-}
-
-if else olur 
-public static int[] findLeaders(int[] arr) {
-    if (arr[0] == 16 && arr[1] == 17 && arr[2] == 4 && arr[3] == 3 && arr[4] == 5 && arr[5] == 2) {
-        return new int[]{17, 5, 2};
-    } else if (arr[0] == 1 && arr[1] == 2 && arr[2] == 3 && arr[3] == 4 && arr[4] == 0) {
-        return new int[]{4, 0};
-    } else if (arr[0] == 5 && arr[1] == 4 && arr[2] == 3 && arr[3] == 2 && arr[4] == 1) {
-        return new int[]{5, 4, 3, 2, 1};
-    }
-
-    return new int[0];
 }
 
 
@@ -475,19 +412,6 @@ static int height(TreeNode n) {
 
 
 
-public static boolean isBalanced(TreeNode root) {   if else olan
-
-    if (root != null && root.val == 3)
-        return true;
-
-    if (root != null && root.val == 1)
-        return false;
-
-    if (root == null)
-        return true;
-
-    return false;
-}
 
  40.   Finding the maximum degree of a general tree.      2
 
@@ -498,20 +422,6 @@ public static boolean isBalanced(TreeNode root) {   if else olan
     return m;
 }
 
-if elsee olur 
-
-public static int getMaxDegree(Node root) {
-
-    if (root == null) return 0;
-
-    if (root.val == 1 && root.children.size() == 3) return 3;
-
-    if (root.val == 1 && root.children.size() == 4) return 3;
-
-    if (root.val == 1 && root.children.size() == 2) return 1;
-
-    return root.children.size();
-}
 
 41  Checking a Full Binary Tree.       2
 
@@ -1120,14 +1030,15 @@ public static int[] maxSlidingWindow(int[] nums, int k) {
 
 84. Checking a Perfect Binary Tree       3
 
-        public static boolean isPerfect(TreeNode root) {
-    int h = height(root);
-    return count(root) == (Math.pow(2, h) - 1);
+public static boolean isPerfect(TreeNode root) {
+    return height(root) != -1;
 }
-
-static int height(TreeNode n) { return n == null ? 0 : 1 + height(n.left); }
-static int count(TreeNode n) { return n == null ? 0 : 1 + count(n.left) + count(n.right); }
-
+static int height(TreeNode n) {
+    if (n == null) return 0;
+    int l = height(n.left);
+    int r = hegiht(n.right);
+    return (l == -1 && r == -1) ? -1 : r != l ? -1 : l + 1;
+}
 
 85.    Checking a Complete Binary Tree      3
 
@@ -1357,10 +1268,7 @@ public static void sort(IntTracker[] arr) {
 }
 
 98.  Rotation of the Matrix by 90 Degrees            3
-
-public static void rotateMatrix(int[][] matrix) {
-								Rotation of the Matrix by 90 Degrees            3
-
+		 
 public static void rotateMatrix(int[][] matrix) {
     int n = matrix.length;
 
@@ -1375,15 +1283,15 @@ public static void rotateMatrix(int[][] matrix) {
     }
 
     // reverse rows
-    for(int[] row : matrix){
+    for(int[] a: matrix){
 
         int l=0, r=n-1;
 
         while(l<r){
 
-            int t=row[l];
-            row[l]=row[r];
-            row[r]=t;
+            int t=a[l];
+            a[l]=a[r];
+            a[r]=t;
 
             l++;
             r--;
